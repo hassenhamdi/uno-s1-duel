@@ -9,6 +9,11 @@ real games, and find exactly where it wins, ties, and fails.
 A zero-shot 0.8B plays textbook UNO to a draw against written tactics,
 at ~35–85ms per move, with a human seat at a browser table.
 
+## Demo (81s)
+
+<video src="docs/demo.mp4" width="720" controls></video>
+*Public video URL for the entry form: attach the YouTube/X upload of this file.*
+
 ## The pattern that works
 
 The 0.8B is a **judge of pre-computed verdicts**, not a reasoner:
