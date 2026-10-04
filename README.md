@@ -11,8 +11,9 @@ at ~35–85ms per move, with a human seat at a browser table.
 
 ## Demo (81s)
 
+▶ Watch: https://youtu.be/V2z4qdVKEok
+
 <video src="docs/demo.mp4" width="720" controls></video>
-*Public video URL for the entry form: attach the YouTube/X upload of this file.*
 
 ## The pattern that works
 
