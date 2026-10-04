@@ -1,0 +1,11 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Lint on save",
+      "trigger": "PostFileSave",
+      "matcher": "\\.py$",
+      "action": { "type": "command", "command": "ruff check $FILE" }
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>UNO vs S1</title>
+<style>
+body{font-family:sans-serif;background:#0b3d2e;color:#fff;text-align:center}
+#top{margin:12px}
+/* UNO-look card: white shell, colored face, tilted black oval, corner pips */
+.ucard{display:inline-block;width:72px;height:108px;margin:6px;border-radius:10px;
+background:#fff;position:relative;cursor:pointer;box-shadow:0 3px 6px #0008;
+vertical-align:top}
+.ucard .face{position:absolute;inset:7px;border-radius:6px}
+.ucard .oval{position:absolute;left:50%;top:50%;width:44px;height:66px;
+transform:translate(-50%,-50%) rotate(-24deg);background:#111;border-radius:50%;
+display:flex;align-items:center;justify-content:center}
+.ucard .oval span{font-weight:900;font-size:30px;font-style:italic}
+.ucard .pip{position:absolute;font-weight:900;font-size:15px;font-style:italic}
+.ucard .pip.tl{top:3px;left:6px}.ucard .pip.br{bottom:3px;right:6px;transform:rotate(180deg)}
+.ucard.back{cursor:default}
+.r{background:#e0261c}.g{background:#2e9e44}.b{background:#1c6fe0}.y{background:#f2b705}
+.r span,.r .pip{color:#e0261c}.g span,.g .pip{color:#2e9e44}
+.b span,.b .pip{color:#1c6fe0}.y span,.y .pip{color:#c98f00}
+.oval span{color:#fff !important}
+.wild4 .q{position:absolute;width:50%;height:50%}
+#probs{max-width:440px;margin:12px auto;text-align:left}
+.bar{height:14px;background:#2ecc71;margin:2px 0}
+button{font-size:16px;padding:8px 16px;margin:8px}
+.small{color:#9fd8c0;font-size:13px}
+</style></head>
+<body>
+<h1>UNO vs S1 <span id="score"></span></h1>
+<div id="top"></div>
+<div class="small">S1 holds <span id="foe"></span> cards</div>
+<h3>Your hand (click to play)</h3>
+<div id="hand"></div>
+<h3>S1 probabilities (last move)</h3>
+<div id="probs"></div>
+<div class="small" id="msg"></div>
+<div><button onclick="api('new')">New game</button></div>
+<script>
+let state=null;
+async function api(path, body){
+  const r=await fetch('/'+path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body||{})});
+  state=await r.json(); render();
+}
+const COLMAP={r:['r','RED'],g:['g','GREEN'],b:['b','BLUE'],y:['y','YELLOW']};
+function faceOf(name){
+  // RLCard names: r-2, y-skip, b-reverse, g-draw_2?, r-wild, b-wild_draw_4, draw
+  const n=name.toLowerCase();
+  if(n==='draw') return {cls:'back',face:'DRAW',corner:'+',oval:'+'};
+  let col=n[0], rest=n.slice(2);
+  if(rest.startsWith('wild_draw_4')||rest.startsWith('wild draw 4')) return {wild4:'+4'};
+  if(rest.startsWith('wild')) return {wild4:'W'};
+  let sym=rest;
+  if(rest.includes('skip')) sym='⊘';
+  else if(rest.includes('reverse')) sym='R';
+  else if(rest.includes('draw')) sym='+2';
+  return {cls:col,face:sym.toUpperCase(),corner:sym.toUpperCase(),oval:sym.toUpperCase()};
+}
+function cardHTML(name, playable){
+  const f=faceOf(name);
+  if(f.cls==='back'||f.cls===undefined&&name==='draw')
+    return `<div class="ucard back"><div class="face" style="background:#333"></div><div class="oval"><span>+</span></div></div>`;
+  if(f.wild4){
+    const q=['r','g','b','y'].map((c,i)=>`<div class="q ${c}" style="left:${i%2*50}%;top:${(i/2|0)*50}%"></div>`).join('');
+    return `<div class="ucard ${playable?'':'back'}"><div class="face wild4" style="background:#111">${q}</div><div class="oval"><span>${f.wild4}</span></div></div>`;
+  }
+  return `<div class="ucard ${playable===false?'back':''} ${f.cls}">`
+    +`<div class="face ${f.cls}"></div>`
+    +`<div class="pip tl">${f.corner}</div><div class="pip br">${f.corner}</div>`
+    +`<div class="oval"><span>${f.oval}</span></div></div>`;
+}
+function render(){
+  document.getElementById('score').textContent=`(you ${state.wins.you} – S1 ${state.wins.s1})`;
+  document.getElementById('top').innerHTML='Top:<br>'+cardHTML(state.top,false);
+  document.getElementById('foe').textContent=state.foe_n;
+  document.getElementById('msg').textContent=state.msg||'';
+  const h=document.getElementById('hand'); h.innerHTML='';
+  const legal=new Set(state.legal||[]);
+  state.hand.forEach((c)=>{
+    const d=document.createElement('span');
+    d.innerHTML=cardHTML(c, legal.size===0||legal.has(c));
+    d.firstChild.onclick=()=>{
+      const idx=(state.legal||[]).indexOf(c);
+      api('move',{i:idx<0?0:idx});
+    };
+    h.appendChild(d);
+  });
+  const p=document.getElementById('probs'); p.innerHTML='';
+  (state.last_probs||[]).forEach(([name,pr])=>{
+    p.innerHTML+=`<div>${name} ${(pr*100).toFixed(0)}%<div class="bar" style="width:${pr*100}%"></div></div>`;
+  });
+  if(state.over) setTimeout(()=>alert(state.over),300);
+}
+api('new');
+</script></body></html>

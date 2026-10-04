@@ -1,0 +1,6 @@
+{
+  "powers": [
+    { "name": "testing-pbt", "registry": "kiro-verified", "keywords": ["property-based testing", "hypothesis"] },
+    { "name": "uno-tuner", "path": "./powers/uno-tuner", "keywords": ["duel match", "tune prompts", "win rate", "uno"] }
+  ]
+}

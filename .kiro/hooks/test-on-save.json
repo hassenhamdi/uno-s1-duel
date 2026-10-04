@@ -1,0 +1,11 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "UNO tests on player save",
+      "trigger": "PostFileSave",
+      "matcher": "uno/player\\.py$",
+      "action": { "type": "command", "command": "PYTHONPATH=. .venv/bin/pytest tests/ -q" }
+    }
+  ]
+}

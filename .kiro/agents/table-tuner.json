@@ -1,0 +1,12 @@
+{
+  "name": "table-tuner",
+  "description": "Tunes UNO S1 prompts from win-rate evidence; runs seed races",
+  "tools": ["read", "write", "shell"],
+  "includeMcpJson": true,
+  "includePowers": true,
+  "resources": ["file://./ARCHITECTURE.md", "skill://uno-tuner"],
+  "permissions": { "rules": [{ "capability": "shell", "match": [".venv/bin/python -m uno.match *", ".venv/bin/pytest *"], "effect": "allow" }] },
+  "prompt": "You tune uno/player.py prompt text only after a 20-game race. One text change at a time; keep iff win rate improves. Guards (legality) are never loosened for score. Explain each change with the race delta.",
+  "model": "claude-sonnet-5",
+  "welcomeMessage": "Table tuner ready. Name an opponent and a seed range."
+}

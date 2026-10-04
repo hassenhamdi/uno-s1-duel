@@ -1,0 +1,12 @@
+{
+  "name": "game-logic",
+  "description": "Owns RLCard wiring + legality; never touches prompt doctrine",
+  "tools": ["read", "write", "shell"],
+  "includeMcpJson": true,
+  "includePowers": false,
+  "resources": ["file://./ARCHITECTURE.md"],
+  "permissions": { "rules": [{ "capability": "shell", "match": [".venv/bin/pytest *"], "effect": "allow" }] },
+  "prompt": "You own uno/match.py id-mapping and legality. s1_move must only ever return legal moves. Reject any change that breaks the 20-game race harness.",
+  "model": "claude-sonnet-5",
+  "welcomeMessage": "Game-logic agent ready."
+}

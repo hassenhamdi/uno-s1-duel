@@ -1,0 +1,87 @@
+======================================================================
+  UNO: S1 vs HEURISTIC (seed 123)
+======================================================================
+
+Move 1 | S1's turn
+  Top card: 🔴9
+  S1 hand (7): 🔵DRAW_2 🔴0 🔵8 🟡9 🔵2 🟡DRAW_2 🟡0
+  Opponent: 7 cards
+  → Plays: 🔴0
+
+Move 2 | HEUR's turn
+  Top card: 🔴0
+  HEUR hand (7): 🟡4 🔴1 🔴3 🟢2 🔵1 🟢REVERSE 🔴4
+  Opponent: 6 cards
+  → Plays: 🔴1
+
+Move 3 | S1's turn
+  Top card: 🔴1
+  S1 hand (6): 🔵DRAW_2 🔵8 🟡9 🔵2 🟡DRAW_2 🟡0
+  Opponent: 6 cards
+  → Plays: [DRAW]
+
+Move 4 | HEUR's turn
+  Top card: 🔴1
+  HEUR hand (6): 🟡4 🔴3 🟢2 🔵1 🟢REVERSE 🔴4
+  Opponent: 7 cards
+  → Plays: 🔴3
+
+Move 5 | S1's turn
+  Top card: 🔴3
+  S1 hand (7): 🔵DRAW_2 🔵8 🟡9 🔵2 🟡DRAW_2 🟡0 🟢2
+  Opponent: 5 cards
+  → Plays: [DRAW]
+
+Move 6 | HEUR's turn
+  Top card: 🔵WILD_DRAW_4
+  HEUR hand (5): 🟡4 🟢2 🔵1 🟢REVERSE 🔴4
+  Opponent: 7 cards
+  → Plays: 🔵1
+
+Move 7 | S1's turn
+  Top card: 🔵1
+  S1 hand (7): 🔵DRAW_2 🔵8 🟡9 🔵2 🟡DRAW_2 🟡0 🟢2
+  Opponent: 4 cards
+  → Plays: 🔵DRAW_2
+
+Move 8 | S1's turn
+  Top card: 🔵DRAW_2
+  S1 hand (6): 🔵8 🟡9 🔵2 🟡DRAW_2 🟡0 🟢2
+  Opponent: 6 cards
+  → Plays: 🔵8
+
+Move 9 | HEUR's turn
+  Top card: 🔵8
+  HEUR hand (6): 🟡4 🟢2 🟢REVERSE 🔴4 🟡5 🔴2
+  Opponent: 5 cards
+  → Plays: [DRAW]
+
+Move 10 | S1's turn
+  Top card: 🔵8
+  S1 hand (5): 🟡9 🔵2 🟡DRAW_2 🟡0 🟢2
+  Opponent: 7 cards
+  → Plays: 🔵2
+
+Move 17 | HEUR's turn
+  Top card: 🟡9
+  HEUR hand (4): 🔴4 🟡5 🔴2 🟢4
+  Opponent: 2 cards
+  → Plays: 🟡5
+
+Move 18 | S1's turn
+  Top card: 🟡5
+  S1 hand (2): 🟡DRAW_2 🟡0
+  Opponent: 3 cards
+  → Plays: 🟡DRAW_2
+
+Move 19 | S1's turn
+  Top card: 🟡DRAW_2
+  S1 hand (1): 🟡0
+  Opponent: 5 cards
+  → Plays: 🟡0
+
+======================================================================
+  GAME OVER: S1 WINS!
+  Total moves: 19
+======================================================================
+

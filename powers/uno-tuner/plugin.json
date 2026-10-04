@@ -1,0 +1,8 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "uno-tuner",
+  "version": "1.0.0",
+  "description": "Race UNO S1 prompts, tune wording from win-rate deltas",
+  "author": { "name": "hassenhamdi" },
+  "keywords": ["duel match", "tune prompts", "win rate", "uno", "decision model"]
+}
